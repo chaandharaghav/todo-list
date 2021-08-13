@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --progress --mode=development",
-    "watch":"webpack --progress --watch"
+    "watch": "webpack --progress --watch"
   },
   "repository": {
     "type": "git",
@@ -27,5 +27,8 @@
     "style-loader": "^3.2.1",
     "webpack": "^5.50.0",
     "webpack-cli": "^4.7.2"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.4"
   }
 }
