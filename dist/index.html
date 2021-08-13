@@ -19,7 +19,7 @@
 
     <nav class="navbar" role="navigation" aria-label="main navigation">
       <div class="navbar-brand my-3">
-        <a class="navbar-item is-size-2" href="https://bulma.io">
+        <a class="navbar-item is-size-2" href="#">
           <span class="icon">
             <i class="fas fa-check-double"></i>
           </span>
@@ -38,5 +38,23 @@
         </a>
       </div>
     </nav>
+
+    <!-- Sidebar begins here -->
+    <div class="columns is-hidden-mobile" id="sidebar">
+      <div class="column">
+        <aside class="menu">
+          <p class="menu-label">General</p>
+          <ul class="menu-list">
+            <li><a>Home</a></li>
+            <li><a>Week</a></li>
+          </ul>
+          <p class="menu-label">Projects</p>
+          <ul class="menu-list" id="projects">
+            <li><a class="is-active">All</a></li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+    <script src="./js/bundle.js"></script>
   </body>
 </html>
