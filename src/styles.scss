@@ -6,7 +6,19 @@
   width: 320px;
   position: fixed;
   background-color: hsl(0, 0%, 95%);
-  z-index: 2;
+  z-index: 5;
 
   padding: 1rem;
+}
+
+.offset {
+  position: absolute;
+  left: 320px;
+}
+
+@media (min-width: 1023px) {
+  #mainContent {
+    position: absolute;
+    left: 320px;
+  }
 }
