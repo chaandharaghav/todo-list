@@ -1,14 +1,8 @@
 require("./styles.scss");
 
-const sidebarToggler = document.querySelector(".navbar-burger");
-const sidebar = document.querySelector("#sidebar");
-const mainContent = document.querySelector("#mainContent");
+import { displayController, findActive } from "./displayController";
+// import home from "./home.js";
 
-sidebarToggler.addEventListener("click", function () {
-  this.classList.toggle("is-active");
-  sidebar.classList.toggle("is-hidden-mobile");
+displayController();
 
-  if (window.innerWidth > 750) {
-    mainContent.classList.toggle("offset");
-  }
-});
+console.log(findActive().innerText);
