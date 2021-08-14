@@ -1,6 +1,10 @@
 @charset "utf-8";
 @import "~bulma/bulma";
 
+body {
+  padding-top: 100px;
+}
+
 #sidebar {
   height: 100%;
   width: 320px;
