@@ -1,3 +1,5 @@
+import { findProject } from "./taskDisplayer";
+
 function displayController() {
   // for opening/closing sidebar and related padding for tablets
   sidebarToggler.addEventListener("click", displayToggler);
@@ -37,6 +39,7 @@ function isChange() {
   const currentActive = findActive().innerText.toLowerCase();
   if (lastActive !== currentActive) {
     console.log(currentActive);
+    findProject(currentActive);
     lastActive = currentActive;
   }
 }
@@ -52,4 +55,4 @@ function clearActive() {
   sidebarLinks.forEach((link) => link.classList.remove("is-active"));
 }
 
-export { displayController };
+export { displayController, findActive };

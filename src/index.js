@@ -1,7 +1,7 @@
 require("./styles.scss");
 
-import { displayController } from "./displayController";
-import { loadTasks } from "./taskDisplayer";
+import { displayController, findActive } from "./displayController";
+import { findProject } from "./taskDisplayer";
 
 displayController();
-loadTasks();
+findProject(findActive().innerText.toLowerCase());

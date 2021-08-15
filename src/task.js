@@ -25,7 +25,18 @@ class Project {
 }
 
 const home = new Project("home");
-const projectList = [home];
+const all = new Project("all");
+
+const projectList = [];
+
+function findAllTasks() {
+  for (let project of projectList) {
+    for (let task of project.viewTasks()) {
+      all.addTask(task);
+    }
+  }
+}
+findAllTasks();
 
 const dtasks = [
   "Do the laundry",
@@ -38,4 +49,4 @@ for (let dtask of dtasks) {
   home.addTask(dtask);
 }
 
-export { home };
+export { home, all, projectList };
