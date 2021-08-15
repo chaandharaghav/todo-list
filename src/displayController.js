@@ -1,11 +1,16 @@
-import { findProject } from "./taskDisplayer";
+import { loadProject } from "./taskDisplayer";
 
 function displayController() {
   // for opening/closing sidebar and related padding for tablets
   sidebarToggler.addEventListener("click", displayToggler);
 
   // toggles active element of the sidebar menu
-  sidebarLinks.forEach((link) => link.addEventListener("click", changeActive));
+  sidebar.addEventListener("click", function (e) {
+    if (e.target.nodeName === "A") {
+      changeActive(e.target);
+    }
+  });
+  // sidebarLinks.forEach((link) => link.addEventListener("click", changeActive));
 }
 
 const sidebarToggler = document.querySelector(".navbar-burger");
@@ -26,33 +31,39 @@ function displayToggler() {
 
 // finds current active element
 function findActive() {
-  for (let link of sidebarLinks) {
-    if (link.classList.contains("is-active")) {
-      return link;
-    }
-  }
+  return document.querySelector("#sidebar .is-active");
 }
 
 // checks if active element changes
-let lastActive = findActive().innerText.toLowerCase();
+let lastActive = findActive().innerText;
 function isChange() {
-  const currentActive = findActive().innerText.toLowerCase();
+  const currentActive = findActive().innerText;
   if (lastActive !== currentActive) {
-    console.log(currentActive);
-    findProject(currentActive);
+    loadProject(currentActive);
     lastActive = currentActive;
   }
 }
 
 // change active element
-function changeActive() {
+function changeActive(elem) {
   clearActive();
-  this.classList.add("is-active");
+  elem.classList.add("is-active");
   isChange();
 }
 
 function clearActive() {
-  sidebarLinks.forEach((link) => link.classList.remove("is-active"));
+  document.querySelector("#sidebar .is-active").classList.remove("is-active");
 }
 
-export { displayController, findActive };
+function listProject(projectName) {
+  const projects = document.querySelector("#projects");
+
+  const newListItem = document.createElement("li");
+  const newLink = document.createElement("a");
+  newLink.innerText = projectName;
+
+  newListItem.append(newLink);
+  projects.append(newListItem);
+}
+
+export { displayController, findActive, listProject };

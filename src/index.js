@@ -1,7 +1,9 @@
 require("./styles.scss");
 
 import { displayController, findActive } from "./displayController";
-import { findProject } from "./taskDisplayer";
+import { addProject, showProjectList } from "./task";
+import { loadProject } from "./taskDisplayer";
 
 displayController();
-findProject(findActive().innerText.toLowerCase());
+loadProject(findActive().innerText);
+addProject("Trying");

@@ -1,3 +1,5 @@
+import { listProject } from "./displayController";
+
 class Task {
   constructor(title, description, dueDate, priority, completed) {
     this.title = title;
@@ -24,8 +26,28 @@ class Project {
   }
 }
 
-const home = new Project("home");
-const all = new Project("all");
+function addProject(projectName) {
+  const newProject = new Project(projectName);
+  projectList.push(newProject);
+  listProject(projectName);
+}
+
+function findProject(projectName) {
+  for (let project of projectList) {
+    if (project.projectName === projectName) {
+      return project;
+    } else {
+      console.log(project.projectName);
+    }
+  }
+}
+
+function showProjectList() {
+  return projectList;
+}
+
+const home = new Project("Home");
+const week = new Project("Week");
 
 const projectList = [];
 
@@ -49,4 +71,4 @@ for (let dtask of dtasks) {
   home.addTask(dtask);
 }
 
-export { home, all, projectList };
+export { home, week, addProject, findProject, showProjectList };

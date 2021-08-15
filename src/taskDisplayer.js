@@ -1,4 +1,4 @@
-import { home, all, projectList } from "./task";
+import { home, week, findProject } from "./task";
 
 const mainContent = document.querySelector("#mainContent");
 
@@ -25,29 +25,18 @@ function loadTasks(project) {
   mainContent.append(taskDiv);
 }
 
-function findProject(key) {
+function loadProject(key) {
   switch (key) {
-    case "home":
+    case "Home":
       loadTasks(home);
       break;
-    case "all":
-      if (projectList.length === 0) {
-        loadTasks(home);
-      } else {
-        loadTasks(all);
-      }
-      break;
-    case "week":
+    case "Week":
       loadTasks(week);
       break;
     default:
-      loadTasks(getProject(key));
+      loadTasks(findProject(key));
       break;
   }
 }
 
-function getProject(key) {
-  projectList.find((project) => project.projectName === key);
-}
-
-export { findProject };
+export { loadProject };
