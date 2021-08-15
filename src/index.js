@@ -1,8 +1,7 @@
 require("./styles.scss");
 
-import { displayController, findActive } from "./displayController";
-// import home from "./home.js";
+import { displayController } from "./displayController";
+import { loadTasks } from "./taskDisplayer";
 
 displayController();
-
-console.log(findActive().innerText);
+loadTasks();

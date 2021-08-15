@@ -12,6 +12,7 @@ const sidebarLinks = document.querySelectorAll("#sidebar a");
 
 const mainContent = document.querySelector("#mainContent");
 
+// controls view when sidebar is toggled in tablet
 function displayToggler() {
   this.classList.toggle("is-active");
   sidebar.classList.toggle("is-hidden-mobile");
@@ -21,6 +22,7 @@ function displayToggler() {
   }
 }
 
+// finds current active element
 function findActive() {
   for (let link of sidebarLinks) {
     if (link.classList.contains("is-active")) {
@@ -29,13 +31,25 @@ function findActive() {
   }
 }
 
+// checks if active element changes
+let lastActive = findActive().innerText.toLowerCase();
+function isChange() {
+  const currentActive = findActive().innerText.toLowerCase();
+  if (lastActive !== currentActive) {
+    console.log(currentActive);
+    lastActive = currentActive;
+  }
+}
+
+// change active element
 function changeActive() {
   clearActive();
   this.classList.add("is-active");
+  isChange();
 }
 
 function clearActive() {
   sidebarLinks.forEach((link) => link.classList.remove("is-active"));
 }
 
-export { findActive, displayController };
+export { displayController };
