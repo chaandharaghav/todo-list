@@ -68,18 +68,72 @@
             <button class="delete modalCancel" aria-label="close"></button>
           </header>
           <section class="modal-card-body">
-            <div class="field">
-              <label class="label">Label</label>
-              <div class="control">
-                <input class="input" type="text" placeholder="Text input" />
+            <form action="">
+              <div class="field" id="title">
+                <label class="label">Title</label>
+                <div class="control">
+                  <input
+                    class="input"
+                    type="text"
+                    placeholder="Text input"
+                    required
+                  />
+                </div>
               </div>
-              <p class="help is-danger is-hidden">This email is invalid</p>
-            </div>
+
+              <div class="field">
+                <label class="label">Description</label>
+                <div class="control">
+                  <textarea class="textarea" placeholder="Textarea"></textarea>
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="label">Scheduled time</label>
+                <div class="control">
+                  <input type="date" />
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="label">Priority</label>
+                <div class="control">
+                  <div class="select">
+                    <select>
+                      <option selected disabled value="">
+                        Choose priority
+                      </option>
+                      <option value="1">Low</option>
+                      <option value="2">Medium</option>
+                      <option value="3">High</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="field">
+                <div class="control">
+                  <label class="checkbox">
+                    <input type="checkbox" />
+                    Completed
+                  </label>
+                </div>
+              </div>
+
+              <div class="field is-grouped">
+                <div class="control">
+                  <button class="button is-link" id="modalAddTask">Add</button>
+                </div>
+                <div class="control">
+                  <button class="button is-link is-light">Cancel</button>
+                </div>
+              </div>
+            </form>
           </section>
-          <footer class="modal-card-foot">
+          <!-- <footer class="modal-card-foot">
             <button class="button is-success" id="modalAddTask">Add</button>
             <button class="button modalCancel">Cancel</button>
-          </footer>
+          </footer> -->
         </div>
       </div>
     </template>

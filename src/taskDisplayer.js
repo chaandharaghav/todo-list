@@ -1,3 +1,4 @@
+import { findActive } from "./displayController";
 import { home, week, findProject } from "./task";
 
 function loadTasks(project) {
@@ -13,6 +14,7 @@ function loadTasks(project) {
   const taskList = document.createElement("ul");
   taskList.id = "taskList";
 
+  // adding tasks of the project
   for (let task of project.viewTasks()) {
     const taskElement = document.createElement("li");
     taskElement.innerText = task.title;
@@ -22,7 +24,7 @@ function loadTasks(project) {
 
   taskDiv.append(projectTitle, taskList);
 
-  // if no tasks are there, ask to add task
+  // if no tasks are there, inform there are no tasks
   if (project.numTasks === 0) {
     const infoDiv = document.createElement("div");
 
@@ -31,16 +33,16 @@ function loadTasks(project) {
 
     infoDiv.append(warning);
 
-    // week only shows tasks that are scheduled this week, so restricting add previlage
-    if (project.projectName !== "Week") {
-      const newTaskBtn = document.createElement("button");
-      newTaskBtn.innerText = "Add task";
-      infoDiv.append(newTaskBtn);
-
-      newTaskBtn.addEventListener("click", askForTask);
-    }
-
     taskDiv.append(infoDiv);
+  }
+
+  // week only shows tasks that are scheduled this week, so restricting add previlage
+  if (project.projectName !== "Week" && project.projectName !== "Home") {
+    const newTaskBtn = document.createElement("button");
+    newTaskBtn.innerText = "Add task";
+    taskDiv.append(newTaskBtn);
+
+    newTaskBtn.addEventListener("click", askForTask);
   }
 
   mainContent.append(taskDiv);
@@ -54,17 +56,46 @@ function askForTask() {
     let modalClone = modal.content.cloneNode(true);
     mainContent.append(modalClone);
   }
+}
 
-  mainContent.addEventListener("click", function (e) {
-    if (e.target.id === "modalAddTask") {
-      console.log("Task added successfully");
-    } else if (e.target.classList.contains("modalCancel")) {
-      // to prevent remove from being invoked if the element doesnt exist
-      if (document.querySelector("#mainContent .modal") != undefined) {
-        document.querySelector("#mainContent .modal").remove();
-      }
-    }
-  });
+// if form submission button is clicked, addTask and load
+mainContent.addEventListener("click", function (e) {
+  if (e.target.id === "modalAddTask") {
+    const project = findProject(findActive().innerText);
+
+    const form = document.querySelector("#modal form");
+    form.addEventListener(
+      "submit",
+      function (e) {
+        e.preventDefault();
+        addTask();
+        loadTasks(project);
+      },
+      { once: true }
+    );
+  } else if (e.target.classList.contains("modalCancel")) {
+    document.querySelector("#modal").remove();
+  }
+});
+
+// extracting arguments and adding the task
+function addTask() {
+  const project = findProject(findActive().innerText);
+  const form = document.querySelector("#modal form");
+
+  let tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+
+  const args = [
+    form[0].value || null,
+    form[1].value || null,
+    form[2].value || tomorrow,
+    form[3].value || null,
+    form[4].checked || null,
+  ];
+
+  project.addTask(...args);
+  console.log(project);
 }
 
 function loadProject(key) {
