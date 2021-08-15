@@ -16,6 +16,10 @@ class Project {
     this.projectName = projectName;
   }
 
+  get numTasks() {
+    return this.#taskList.length;
+  }
+
   viewTasks() {
     return this.#taskList;
   }

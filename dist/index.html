@@ -58,6 +58,32 @@
       </div>
     </div>
 
+    <!-- Template for modal -->
+    <template id="modalTemplate">
+      <div class="modal is-active" id="modal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+          <header class="modal-card-head">
+            <p class="modal-card-title">Add task</p>
+            <button class="delete modalCancel" aria-label="close"></button>
+          </header>
+          <section class="modal-card-body">
+            <div class="field">
+              <label class="label">Label</label>
+              <div class="control">
+                <input class="input" type="text" placeholder="Text input" />
+              </div>
+              <p class="help is-danger is-hidden">This email is invalid</p>
+            </div>
+          </section>
+          <footer class="modal-card-foot">
+            <button class="button is-success" id="modalAddTask">Add</button>
+            <button class="button modalCancel">Cancel</button>
+          </footer>
+        </div>
+      </div>
+    </template>
+
     <!-- Main content begins here -->
     <div class="columns is-mobile" id="mainContent">
       <div class="column px-6">

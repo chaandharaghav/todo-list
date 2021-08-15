@@ -1,7 +1,7 @@
 require("./styles.scss");
 
 import { displayController, findActive } from "./displayController";
-import { addProject, showProjectList } from "./task";
+import { addProject } from "./task";
 import { loadProject } from "./taskDisplayer";
 
 displayController();
