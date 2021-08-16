@@ -27,6 +27,7 @@ class Project {
   addTask(title, description, dueDate, priority, completed) {
     const newTask = new Task(title, description, dueDate, priority, completed);
     this.#taskList.push(newTask);
+    // setLocal();
   }
 
   findTask(taskTitle) {
@@ -48,6 +49,7 @@ function addProject(projectName) {
   const newProject = new Project(projectName);
   projectList.push(newProject);
   listProject(projectName);
+  // setLocal();
 }
 
 function findProject(projectName) {
@@ -67,10 +69,34 @@ function showProjectList() {
   return projectList;
 }
 
-const home = new Project("Home");
+let home = new Project("Home");
 const week = new Project("Week");
 
-const projectList = [];
+let projectList = [];
+
+// as storing a class requires serialization, this is left unsaved to localStorage for now
+
+// function setLocal() {
+//   console.log(JSON.stringify(home));
+//   const lhome = JSON.stringify(home);
+//   const lprojectList = JSON.stringify(projectList);
+
+//   localStorage.setItem("home", lhome);
+//   localStorage.setItem("projectList", lprojectList);
+// }
+
+// function getFromLocal() {
+//   if (
+//     localStorage.getItem("home") !== null &&
+//     localStorage.getItem("projectList") !== null
+//   ) {
+//     projectList = localStorage.getItem(projectList);
+//     home = localStorage.getItem(home);
+
+//     projectList = JSON.parse(projectList);
+//     home = JSON.parse(home);
+//   }
+// }
 
 const dtasks = [
   "Do the laundry",
@@ -83,4 +109,4 @@ for (let dtask of dtasks) {
   home.addTask(dtask);
 }
 
-export { home, week, addProject, findProject, showProjectList };
+export { home, week, projectList, addProject, findProject, showProjectList };
