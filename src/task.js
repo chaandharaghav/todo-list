@@ -40,8 +40,6 @@ function findProject(projectName) {
   for (let project of projectList) {
     if (project.projectName === projectName) {
       return project;
-    } else {
-      console.log(project.projectName);
     }
   }
 }

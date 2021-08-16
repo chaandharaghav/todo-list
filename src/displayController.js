@@ -1,3 +1,4 @@
+import { addProject } from "./task";
 import { loadProject } from "./taskDisplayer";
 
 function displayController() {
@@ -55,6 +56,38 @@ function clearActive() {
   document.querySelector("#sidebar .is-active").classList.remove("is-active");
 }
 
+function askForProject() {
+  // using templates
+  const modal = document.querySelector("#projectModalTemplate");
+
+  if ("content" in document.createElement("template")) {
+    let modalClone = modal.content.cloneNode(true);
+    mainContent.append(modalClone);
+  }
+}
+
+sidebar.addEventListener("click", function (e) {
+  if (e.target.id === "addProjectBtn") {
+    askForProject();
+
+    const form = document.querySelector("#projectModal form");
+    form.addEventListener(
+      "submit",
+      function (e) {
+        e.preventDefault();
+        addProject(form[0].value.trim());
+      },
+      { once: true }
+    );
+  }
+});
+
+mainContent.addEventListener("click", function (e) {
+  if (e.target.classList.contains("projectModalCancel")) {
+    document.querySelector("#projectModal").remove();
+  }
+});
+
 function listProject(projectName) {
   const projects = document.querySelector("#projects");
 
@@ -64,6 +97,8 @@ function listProject(projectName) {
 
   newListItem.append(newLink);
   projects.append(newListItem);
+
+  changeActive(newLink);
 }
 
 export { displayController, findActive, listProject };
