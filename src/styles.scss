@@ -1,6 +1,10 @@
 @charset "utf-8";
 @import "~bulma/bulma";
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   padding-top: 100px;
 
@@ -15,6 +19,33 @@ body {
   z-index: 5;
 
   padding: 1rem;
+}
+
+.taskItem,
+.expandDiv {
+  max-width: 90%;
+}
+
+.taskItem {
+  background-color: #4862c7;
+  color: aliceblue;
+
+  padding: 1rem 2rem;
+
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.expandDiv {
+  background-color: rgb(73, 89, 102);
+  color: aliceblue;
+}
+
+.expandDiv * {
+  margin-bottom: 2rem;
+}
+.expandDiv *:last-of-type {
+  margin-bottom: 0;
 }
 
 .offset {

@@ -1,7 +1,8 @@
 import { findActive } from "./displayController";
 import { addProjectModal } from "./modalManager";
 import { addProject, findProject } from "./task";
-import { addTask, loadTasks } from "./taskDisplayer";
+import { loadTasks } from "./taskDisplayer";
+import { addTask } from "./taskManager";
 
 function processProject(e) {
   e.preventDefault();

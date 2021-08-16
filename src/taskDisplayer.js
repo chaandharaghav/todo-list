@@ -1,6 +1,6 @@
-import { findActive } from "./displayController";
 import { addTaskModal } from "./modalManager";
 import { home, week, findProject } from "./task";
+import { findTask } from "./taskManager";
 
 function loadTasks(project) {
   const mainContent = document.querySelector("#mainContent");
@@ -19,6 +19,7 @@ function loadTasks(project) {
   for (let task of project.viewTasks()) {
     const taskElement = document.createElement("li");
     taskElement.innerText = task.title;
+    taskElement.classList.add("mt-4", "taskItem");
 
     taskList.append(taskElement);
   }
@@ -49,24 +50,32 @@ function loadTasks(project) {
   mainContent.append(taskDiv);
 }
 
-// extracting arguments and adding the task
-function addTask() {
-  const project = findProject(findActive().innerText);
-  const form = document.querySelector("#modal form");
+function expandTask(elem) {
+  removeExpandDivs();
 
-  let tomorrow = new Date();
-  tomorrow.setDate(tomorrow.getDate() + 1);
+  const expandDiv = document.createElement("div");
+  expandDiv.classList.add("expandDiv", "p-6");
 
-  const args = [
-    form[0].value || null,
-    form[1].value || null,
-    form[2].value || tomorrow,
-    form[3].value || null,
-    form[4].checked || null,
-  ];
+  const description = document.createElement("p");
+  const dueDate = document.createElement("p");
+  const priority = document.createElement("p");
+  const completed = document.createElement("p");
 
-  project.addTask(...args);
-  console.log(project);
+  const task = findTask(elem);
+
+  description.innerText = `Description: ${task.description}`;
+  dueDate.innerText = `Due date: ${task.dueDate}`;
+  priority.innerText = `Priority: ${task.priority}`;
+  completed.innerText = `Whether completed: ${task.completed}`;
+
+  expandDiv.append(description, dueDate, priority, completed);
+  elem.parentNode.insertBefore(expandDiv, elem.nextSibling);
+}
+
+function removeExpandDivs() {
+  if (document.querySelector(".expandDiv")) {
+    document.querySelector(".expandDiv").remove();
+  }
 }
 
 function loadProject(key) {
@@ -83,4 +92,4 @@ function loadProject(key) {
   }
 }
 
-export { loadProject, addTask, loadTasks };
+export { loadProject, loadTasks, expandTask };

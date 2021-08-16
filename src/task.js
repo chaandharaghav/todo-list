@@ -29,11 +29,13 @@ class Project {
     this.#taskList.push(newTask);
   }
 
-  findTask(...args) {
-    // console.log(Object.keys(args[0]));
+  findTask(taskTitle) {
     for (let task of this.#taskList) {
-      //later
+      if (task.title === taskTitle) {
+        return task;
+      }
     }
+    return "Not found";
   }
 
   updateTask(task, title, description, dueDate, priority, completed) {

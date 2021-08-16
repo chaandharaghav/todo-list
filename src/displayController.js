@@ -1,4 +1,4 @@
-import { loadProject } from "./taskDisplayer";
+import { expandTask, loadProject } from "./taskDisplayer";
 
 function displayController() {
   // for opening/closing sidebar and related padding for tablets
@@ -8,6 +8,12 @@ function displayController() {
   sidebar.addEventListener("click", function (e) {
     if (e.target.nodeName === "A") {
       changeActive(e.target);
+    }
+  });
+
+  mainContent.addEventListener("click", function (e) {
+    if (e.target.nodeName === "LI") {
+      expandTask(e.target);
     }
   });
 }
