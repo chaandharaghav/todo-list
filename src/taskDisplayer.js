@@ -100,4 +100,4 @@ function loadProject(key) {
   }
 }
 
-export { loadProject, loadTasks, expandTask };
+export { loadProject, loadTasks, expandTask, removeExpandDivs };

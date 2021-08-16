@@ -72,15 +72,6 @@ const week = new Project("Week");
 
 const projectList = [];
 
-function findAllTasks() {
-  for (let project of projectList) {
-    for (let task of project.viewTasks()) {
-      all.addTask(task);
-    }
-  }
-}
-findAllTasks();
-
 const dtasks = [
   "Do the laundry",
   "Walk the dogs",

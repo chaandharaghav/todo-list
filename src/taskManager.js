@@ -1,5 +1,6 @@
 import { findActive } from "./displayController";
 import { findProject } from "./task";
+import { removeExpandDivs } from "./taskDisplayer";
 
 function findCurrentProject() {
   return findProject(findActive().innerText);
@@ -38,6 +39,7 @@ function deleteTask(elem) {
   const task = project.findTask(taskTitle);
 
   taskItem.remove();
+  removeExpandDivs();
   project.deleteTask(task);
 }
 

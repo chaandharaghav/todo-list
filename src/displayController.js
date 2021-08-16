@@ -1,3 +1,4 @@
+import { showProjectList } from "./task";
 import { expandTask, loadProject } from "./taskDisplayer";
 import { deleteTask } from "./taskManager";
 
@@ -15,6 +16,8 @@ function displayController() {
   mainContent.addEventListener("click", function (e) {
     if (e.target.nodeName === "LI") {
       expandTask(e.target);
+    } else if (e.target.classList.contains("infoSpan")) {
+      expandTask(e.target.parentNode);
     } else if (e.target.nodeName === "path") {
       deleteTask(e.target);
     }
@@ -75,4 +78,12 @@ function listProject(projectName) {
   changeActive(newLink);
 }
 
-export { displayController, findActive, listProject };
+function loadAllProjects() {
+  const projects = document.querySelector("#projects");
+
+  for (let project of showProjectList()) {
+    listProject(project.projectName);
+  }
+}
+
+export { displayController, findActive, listProject, loadAllProjects };

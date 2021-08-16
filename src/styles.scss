@@ -63,6 +63,12 @@ body {
   left: 320px;
 }
 
+@media (min-width: 767px) {
+  .taskItem,
+  .expandDiv {
+    min-width: 340px;
+  }
+}
 @media (min-width: 1023px) {
   #mainContent {
     position: absolute;
