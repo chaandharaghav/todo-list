@@ -28,6 +28,21 @@ class Project {
     const newTask = new Task(title, description, dueDate, priority, completed);
     this.#taskList.push(newTask);
   }
+
+  findTask(...args) {
+    // console.log(Object.keys(args[0]));
+    for (let task of this.#taskList) {
+      //later
+    }
+  }
+
+  updateTask(task, title, description, dueDate, priority, completed) {
+    task.title = title;
+    task.description = description;
+    task.dueDate = dueDate;
+    task.priority = priority;
+    task.completed = completed;
+  }
 }
 
 function addProject(projectName) {
@@ -42,6 +57,7 @@ function findProject(projectName) {
       return project;
     }
   }
+  return null;
 }
 
 function showProjectList() {

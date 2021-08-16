@@ -1,4 +1,4 @@
-import { addProject } from "./task";
+import { addProject, findProject } from "./task";
 import { loadProject } from "./taskDisplayer";
 
 function displayController() {
@@ -66,21 +66,32 @@ function askForProject() {
   }
 }
 
+// if addProjectBtn is clicked proceed to add project
 sidebar.addEventListener("click", function (e) {
   if (e.target.id === "addProjectBtn") {
     askForProject();
 
     const form = document.querySelector("#projectModal form");
-    form.addEventListener(
-      "submit",
-      function (e) {
-        e.preventDefault();
-        addProject(form[0].value.trim());
-      },
-      { once: true }
-    );
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      formVerification(e);
+    });
+    // removing to prevent from adding many times
+    form.removeEventListener("submit", formVerification);
   }
 });
+
+function formVerification(e) {
+  e.preventDefault();
+
+  const form = document.querySelector("#projectModal form");
+  const projectName = form[0].value.trim();
+  if (!findProject(projectName)) {
+    addProject(projectName);
+  } else {
+    document.querySelector("#projectModal .help").classList.remove("is-hidden");
+  }
+}
 
 mainContent.addEventListener("click", function (e) {
   if (e.target.classList.contains("projectModalCancel")) {

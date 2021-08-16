@@ -1,9 +1,10 @@
 require("./styles.scss");
 
 import { displayController, findActive } from "./displayController";
-import { addProject } from "./task";
+import { home } from "./task";
 import { loadProject } from "./taskDisplayer";
 
 displayController();
 loadProject(findActive().innerText);
-addProject("Trying");
+
+home.findTask({ description: "Do the laundry", priority: "low" });
