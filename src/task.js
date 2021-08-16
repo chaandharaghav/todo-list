@@ -38,12 +38,9 @@ class Project {
     return "Not found";
   }
 
-  updateTask(task, title, description, dueDate, priority, completed) {
-    task.title = title;
-    task.description = description;
-    task.dueDate = dueDate;
-    task.priority = priority;
-    task.completed = completed;
+  deleteTask(task) {
+    this.#taskList.splice(this.#taskList.indexOf(task), 1);
+    return this.#taskList;
   }
 }
 

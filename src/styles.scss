@@ -21,6 +21,8 @@ body {
   padding: 1rem;
 }
 
+// Task item styles
+
 .taskItem,
 .expandDiv {
   max-width: 90%;
@@ -32,9 +34,17 @@ body {
 
   padding: 1rem 2rem;
 
+  display: flex;
+
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
+
+.infoSpan {
+  width: 100%;
+}
+
+// Contents of taskItem styles
 
 .expandDiv {
   background-color: rgb(73, 89, 102);
@@ -57,5 +67,14 @@ body {
   #mainContent {
     position: absolute;
     left: 320px;
+  }
+
+  .taskItem,
+  .expandDiv {
+    min-width: 550px;
+  }
+
+  .delTaskIcon:hover {
+    color: rgb(194, 194, 194);
   }
 }

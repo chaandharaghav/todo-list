@@ -31,4 +31,14 @@ function findTask(elem) {
   return project.findTask(elem.innerText);
 }
 
-export { addTask, findTask, findCurrentProject };
+function deleteTask(elem) {
+  const taskItem = elem.parentNode.parentNode.parentNode;
+  const taskTitle = elem.parentNode.parentNode.parentNode.firstChild.innerText;
+  const project = findCurrentProject();
+  const task = project.findTask(taskTitle);
+
+  taskItem.remove();
+  project.deleteTask(task);
+}
+
+export { addTask, findTask, deleteTask, findCurrentProject };

@@ -18,9 +18,17 @@ function loadTasks(project) {
   // adding tasks of the project
   for (let task of project.viewTasks()) {
     const taskElement = document.createElement("li");
-    taskElement.innerText = task.title;
     taskElement.classList.add("mt-4", "taskItem");
 
+    const titleSpan = document.createElement("span");
+    titleSpan.innerText = task.title;
+    titleSpan.classList.add("infoSpan");
+
+    const delSpan = document.createElement("span");
+    delSpan.classList.add("delTaskIcon");
+    delSpan.innerHTML = '<i class="fas fa-trash-alt"></i>';
+
+    taskElement.append(titleSpan, delSpan);
     taskList.append(taskElement);
   }
 

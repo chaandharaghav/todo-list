@@ -1,4 +1,5 @@
 import { expandTask, loadProject } from "./taskDisplayer";
+import { deleteTask } from "./taskManager";
 
 function displayController() {
   // for opening/closing sidebar and related padding for tablets
@@ -14,6 +15,8 @@ function displayController() {
   mainContent.addEventListener("click", function (e) {
     if (e.target.nodeName === "LI") {
       expandTask(e.target);
+    } else if (e.target.nodeName === "path") {
+      deleteTask(e.target);
     }
   });
 }
