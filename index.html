@@ -54,6 +54,7 @@
           </ul>
           <p class="menu-label">Projects</p>
           <ul class="menu-list" id="projects"></ul>
+          <button class="button" id="addProjectBtn">+</button>
         </aside>
       </div>
     </div>
@@ -125,7 +126,12 @@
                   <button class="button is-link" id="modalAddTask">Add</button>
                 </div>
                 <div class="control">
-                  <button class="button is-link is-light">Cancel</button>
+                  <button
+                    class="button is-link is-light modalCancel"
+                    type="button"
+                  >
+                    Cancel
+                  </button>
                 </div>
               </div>
             </form>
@@ -134,6 +140,53 @@
             <button class="button is-success" id="modalAddTask">Add</button>
             <button class="button modalCancel">Cancel</button>
           </footer> -->
+        </div>
+      </div>
+    </template>
+
+    <!-- template for project -->
+    <template id="projectModalTemplate">
+      <div class="modal is-active" id="projectModal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+          <header class="modal-card-head">
+            <p class="modal-card-title">Add project</p>
+            <button
+              class="delete projectModalCancel"
+              aria-label="close"
+            ></button>
+          </header>
+          <section class="modal-card-body">
+            <form action="">
+              <div class="field" id="title">
+                <label class="label">Title</label>
+                <div class="control">
+                  <input
+                    class="input"
+                    type="text"
+                    placeholder="Text input"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="field is-grouped">
+                <div class="control">
+                  <button class="button is-link" id="modalAddProject">
+                    Add
+                  </button>
+                </div>
+                <div class="control">
+                  <button
+                    class="button is-link is-light projectModalCancel"
+                    type="button"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            </form>
+          </section>
         </div>
       </div>
     </template>
