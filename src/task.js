@@ -52,6 +52,10 @@ function addProject(projectName) {
 }
 
 function findProject(projectName) {
+  if (projectName === "Home") {
+    return home;
+  }
+
   for (let project of projectList) {
     if (project.projectName === projectName) {
       return project;

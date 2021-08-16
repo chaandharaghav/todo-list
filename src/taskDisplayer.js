@@ -1,4 +1,5 @@
 import { findActive } from "./displayController";
+import { addTaskModal } from "./modalManager";
 import { home, week, findProject } from "./task";
 
 function loadTasks(project) {
@@ -37,46 +38,16 @@ function loadTasks(project) {
   }
 
   // week only shows tasks that are scheduled this week, so restricting add previlage
-  if (project.projectName !== "Week" && project.projectName !== "Home") {
+  if (project.projectName !== "Week") {
     const newTaskBtn = document.createElement("button");
     newTaskBtn.innerText = "Add task";
     taskDiv.append(newTaskBtn);
 
-    newTaskBtn.addEventListener("click", askForTask);
+    newTaskBtn.addEventListener("click", addTaskModal);
   }
 
   mainContent.append(taskDiv);
 }
-
-function askForTask() {
-  // using templates
-  const modal = document.querySelector("#modalTemplate");
-
-  if ("content" in document.createElement("template")) {
-    let modalClone = modal.content.cloneNode(true);
-    mainContent.append(modalClone);
-  }
-}
-
-// if form submission button is clicked, addTask and load
-mainContent.addEventListener("click", function (e) {
-  if (e.target.id === "modalAddTask") {
-    const project = findProject(findActive().innerText);
-
-    const form = document.querySelector("#modal form");
-    form.addEventListener(
-      "submit",
-      function (e) {
-        e.preventDefault();
-        addTask();
-        loadTasks(project);
-      },
-      { once: true }
-    );
-  } else if (e.target.classList.contains("modalCancel")) {
-    document.querySelector("#modal").remove();
-  }
-});
 
 // extracting arguments and adding the task
 function addTask() {
@@ -112,4 +83,4 @@ function loadProject(key) {
   }
 }
 
-export { loadProject };
+export { loadProject, addTask, loadTasks };

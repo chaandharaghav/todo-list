@@ -1,4 +1,3 @@
-import { addProject, findProject } from "./task";
 import { loadProject } from "./taskDisplayer";
 
 function displayController() {
@@ -11,12 +10,10 @@ function displayController() {
       changeActive(e.target);
     }
   });
-  // sidebarLinks.forEach((link) => link.addEventListener("click", changeActive));
 }
 
 const sidebarToggler = document.querySelector(".navbar-burger");
 const sidebar = document.querySelector("#sidebar");
-const sidebarLinks = document.querySelectorAll("#sidebar a");
 
 const mainContent = document.querySelector("#mainContent");
 
@@ -55,49 +52,6 @@ function changeActive(elem) {
 function clearActive() {
   document.querySelector("#sidebar .is-active").classList.remove("is-active");
 }
-
-function askForProject() {
-  // using templates
-  const modal = document.querySelector("#projectModalTemplate");
-
-  if ("content" in document.createElement("template")) {
-    let modalClone = modal.content.cloneNode(true);
-    mainContent.append(modalClone);
-  }
-}
-
-// if addProjectBtn is clicked proceed to add project
-sidebar.addEventListener("click", function (e) {
-  if (e.target.id === "addProjectBtn") {
-    askForProject();
-
-    const form = document.querySelector("#projectModal form");
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      formVerification(e);
-    });
-    // removing to prevent from adding many times
-    form.removeEventListener("submit", formVerification);
-  }
-});
-
-function formVerification(e) {
-  e.preventDefault();
-
-  const form = document.querySelector("#projectModal form");
-  const projectName = form[0].value.trim();
-  if (!findProject(projectName)) {
-    addProject(projectName);
-  } else {
-    document.querySelector("#projectModal .help").classList.remove("is-hidden");
-  }
-}
-
-mainContent.addEventListener("click", function (e) {
-  if (e.target.classList.contains("projectModalCancel")) {
-    document.querySelector("#projectModal").remove();
-  }
-});
 
 function listProject(projectName) {
   const projects = document.querySelector("#projects");
