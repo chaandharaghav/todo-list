@@ -21,6 +21,10 @@ body {
   padding: 1rem;
 }
 
+#sidebar .delSpan {
+  float: left;
+}
+
 // Task item styles
 
 .taskItem,
@@ -42,6 +46,10 @@ body {
 
 .infoSpan {
   width: 100%;
+}
+
+.menu-list a {
+  display: flex;
 }
 
 // Contents of taskItem styles

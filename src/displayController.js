@@ -1,4 +1,4 @@
-import { showProjectList } from "./task";
+import { deleteProject, home, showProjectList } from "./task";
 import { expandTask, loadProject } from "./taskDisplayer";
 import { deleteTask } from "./taskManager";
 
@@ -10,6 +10,11 @@ function displayController() {
   sidebar.addEventListener("click", function (e) {
     if (e.target.nodeName === "A") {
       changeActive(e.target);
+    } else if (e.target.classList.contains("infoSpan")) {
+      changeActive(e.target.parentNode);
+    } else if (e.target.nodeName === "path") {
+      deleteProject(e.target);
+      changeActive(document.querySelector(".menu-list a"));
     }
   });
 
@@ -56,7 +61,9 @@ function isChange() {
 
 // change active element
 function changeActive(elem) {
-  clearActive();
+  if (findActive() !== null) {
+    clearActive();
+  }
   elem.classList.add("is-active");
   isChange();
 }
@@ -70,7 +77,16 @@ function listProject(projectName) {
 
   const newListItem = document.createElement("li");
   const newLink = document.createElement("a");
-  newLink.innerText = projectName;
+
+  const infoSpan = document.createElement("span");
+  infoSpan.classList.add("infoSpan");
+  infoSpan.innerText = projectName;
+
+  const delSpan = document.createElement("span");
+  delSpan.classList.add("delTaskIcon");
+  delSpan.innerHTML = '<i class="fas fa-trash-alt"></i>';
+
+  newLink.append(infoSpan, delSpan);
 
   newListItem.append(newLink);
   projects.append(newListItem);

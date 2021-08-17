@@ -52,6 +52,17 @@ function addProject(projectName) {
   // setLocal();
 }
 
+function deleteProject(elem) {
+  const projectItem = elem.parentNode.parentNode.parentNode;
+  const projectTitle =
+    elem.parentNode.parentNode.parentNode.firstChild.innerText;
+  const project = findProject(projectTitle);
+
+  projectItem.remove();
+  projectList.splice(projectList.indexOf(project), 1);
+  console.log(projectList);
+}
+
 function findProject(projectName) {
   if (projectName === "Home") {
     return home;
@@ -109,4 +120,12 @@ for (let dtask of dtasks) {
   home.addTask(dtask);
 }
 
-export { home, week, projectList, addProject, findProject, showProjectList };
+export {
+  home,
+  week,
+  projectList,
+  addProject,
+  findProject,
+  showProjectList,
+  deleteProject,
+};

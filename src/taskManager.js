@@ -41,6 +41,7 @@ function deleteTask(elem) {
   taskItem.remove();
   removeExpandDivs();
   project.deleteTask(task);
+  console.log("Deleted");
 }
 
 export { addTask, findTask, deleteTask, findCurrentProject };
